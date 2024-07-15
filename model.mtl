@@ -1,0 +1,445 @@
+# This file was created by OSM2World 0.4.0-SNAPSHOT - https://osm2world.org
+
+
+newmtl ASPHALT_0
+Ns 92.156863
+Ka 0.5019608 0.5019608 0.5019608
+Kd 0.5019608 0.5019608 0.5019608
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\cc0textures\Asphalt010\Asphalt010_Color.png
+map_Kd .\textures\cc0textures\Asphalt010\Asphalt010_Color.png
+Ni 1
+illum 2
+
+newmtl EARTH_0
+Ns 92.156863
+Ka 0.5019608 0.5019608 0.5019608
+Kd 0.5019608 0.5019608 0.5019608
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\cc0textures\Ground042\Ground042_Color.jpg
+map_Kd .\textures\cc0textures\Ground042\Ground042_Color.jpg
+Ni 1
+illum 2
+
+newmtl TREE_BILLBOARD_BROAD_LEAVED_0
+Ns 92.156863
+Ka 0.5019608 0.5019608 0.5019608
+Kd 0.5019608 0.5019608 0.5019608
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\arbaro_tree_broad_leaved.png
+map_Kd .\textures\arbaro_tree_broad_leaved.png
+map_d .\textures\arbaro_tree_broad_leaved.png
+Ni 1
+illum 2
+
+newmtl WOOD_0
+Ns 92.156863
+Ka 0.5019608 0.5019608 0.5019608
+Kd 0.5019608 0.5019608 0.5019608
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\cc0textures\Wood026\Wood026_Color.jpg
+map_Kd .\textures\cc0textures\Wood026\Wood026_Color.jpg
+Ni 1
+illum 2
+
+newmtl STEEL_0
+Ns 92.156863
+Ka 0.5019608 0.5019608 0.5019608
+Kd 0.5019608 0.5019608 0.5019608
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\cc0textures\Metal002\Metal002_Color.jpg
+map_Kd .\textures\cc0textures\Metal002\Metal002_Color.jpg
+Ni 1
+illum 2
+
+newmtl CONCRETE_0
+Ns 92.156863
+Ka 0.27450982 0.27450982 0.27450982
+Kd 0.27450982 0.27450982 0.27450982
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\cc0textures\Concrete034\Concrete034_Color.jpg
+map_Kd .\textures\cc0textures\Concrete034\Concrete034_Color.jpg
+Ni 1
+illum 2
+
+newmtl PAVING_STONE_0
+Ns 92.156863
+Ka 0.5019608 0.5019608 0.5019608
+Kd 0.5019608 0.5019608 0.5019608
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\cc0textures\PavingStones072\PavingStones072_Color.jpg
+map_Kd .\textures\cc0textures\PavingStones072\PavingStones072_Color.jpg
+Ni 1
+illum 2
+
+newmtl GRASS_0
+Ns 92.156863
+Ka 0.5019608 0.5019608 0.5019608
+Kd 0.5019608 0.5019608 0.5019608
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\cc0textures\Ground003\Ground003_Color.jpg
+map_Kd .\textures\cc0textures\Ground003\Ground003_Color.jpg
+Ni 1
+illum 2
+
+newmtl TREE_BILLBOARD_CONIFEROUS_0
+Ns 92.156863
+Ka 0.5019608 0.5019608 0.5019608
+Kd 0.5019608 0.5019608 0.5019608
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\arbaro_tree_coniferous.png
+map_Kd .\textures\arbaro_tree_coniferous.png
+map_d .\textures\arbaro_tree_coniferous.png
+Ni 1
+illum 2
+
+newmtl MAT_0_0
+Ns 92.156863
+Ka 0.16862746 0.3372549 0.23921569
+Kd 0.16862746 0.3372549 0.23921569
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\cc0textures\Bricks008\Bricks008_Color.jpg
+map_Kd .\textures\cc0textures\Bricks008\Bricks008_Color.jpg
+Ni 1
+illum 2
+
+newmtl STONE_0
+Ns 92.156863
+Ka 0.3137255 0.3254902 0.30588236
+Kd 0.3137255 0.3254902 0.30588236
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\cc0textures\Bricks008\Bricks008_Color.jpg
+map_Kd .\textures\cc0textures\Bricks008\Bricks008_Color.jpg
+Ni 1
+illum 2
+
+newmtl KERB_0
+Ns 92.156863
+Ka 0.5019608 0.5019608 0.5019608
+Kd 0.5019608 0.5019608 0.5019608
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\KnerrKerb0001.png
+map_Kd .\textures\KnerrKerb0001.png
+Ni 1
+illum 2
+
+newmtl HEDGE_0
+Ns 92.156863
+Ka 0.5019608 0.5019608 0.5019608
+Kd 0.5019608 0.5019608 0.5019608
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\Grass-2048.JPG
+map_Kd .\textures\Grass-2048.JPG
+Ni 1
+illum 2
+
+newmtl GRAVEL_0
+Ns 92.156863
+Ka 0.5019608 0.5019608 0.5019608
+Kd 0.5019608 0.5019608 0.5019608
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\cc0textures\Gravel004\Gravel004_Color.jpg
+map_Kd .\textures\cc0textures\Gravel004\Gravel004_Color.jpg
+Ni 1
+illum 2
+
+newmtl MAT_1_0
+Ns 92.156863
+Ka 0.5019608 0.5019608 0.5019608
+Kd 0.5019608 0.5019608 0.5019608
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\cc0textures\Bricks029\Bricks029_Color.jpg
+map_Kd .\textures\cc0textures\Bricks029\Bricks029_Color.jpg
+Ni 1
+illum 2
+
+newmtl MAT_1_1
+Ns 92.156863
+Ka 0.5019608 0.5019608 0.5019608
+Kd 0.5019608 0.5019608 0.5019608
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\MarekCompositeWall00001_transparent.png
+map_Kd .\textures\MarekCompositeWall00001_transparent.png
+Ni 1
+illum 2
+
+newmtl ENTRANCE_DEFAULT_0
+Ns 92.156863
+Ka 0.5019608 0.5019608 0.5019608
+Kd 0.5019608 0.5019608 0.5019608
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\DE19F1FreisingDoor00005_small.png
+map_Kd .\textures\DE19F1FreisingDoor00005_small.png
+Ni 1
+illum 2
+
+newmtl BRICK_0
+Ns 92.156863
+Ka 0.5019608 0.5019608 0.5019608
+Kd 0.5019608 0.5019608 0.5019608
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\cc0textures\Bricks029\Bricks029_Color.jpg
+map_Kd .\textures\cc0textures\Bricks029\Bricks029_Color.jpg
+Ni 1
+illum 2
+
+newmtl MAT_2_0
+Ns 92.156863
+Ka 0.3764706 0.3764706 0.3764706
+Kd 0.3764706 0.3764706 0.3764706
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\cc0textures\Concrete034\Concrete034_Color.jpg
+map_Kd .\textures\cc0textures\Concrete034\Concrete034_Color.jpg
+Ni 1
+illum 2
+
+newmtl MAT_3_0
+Ns 92.156863
+Ka 0.41568628 0.41960785 0.42745098
+Kd 0.41568628 0.41960785 0.42745098
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\cc0textures\Plaster002\Plaster002_Color.jpg
+map_Kd .\textures\cc0textures\Plaster002\Plaster002_Color.jpg
+Ni 1
+illum 2
+
+newmtl MAT_3_1
+Ns 92.156863
+Ka 0.5019608 0.5019608 0.5019608
+Kd 0.5019608 0.5019608 0.5019608
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\MarekCompositeWall00001_transparent.png
+map_Kd .\textures\MarekCompositeWall00001_transparent.png
+Ni 1
+illum 2
+
+newmtl MAT_4_0
+Ns 92.156863
+Ka 0.41568628 0.41960785 0.42745098
+Kd 0.41568628 0.41960785 0.42745098
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\cc0textures\Plaster002\Plaster002_Color.jpg
+map_Kd .\textures\cc0textures\Plaster002\Plaster002_Color.jpg
+Ni 1
+illum 2
+
+newmtl MAT_5_0
+Ns 92.156863
+Ka 0.41568628 0.41960785 0.42745098
+Kd 0.41568628 0.41960785 0.42745098
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\cc0textures\Concrete034\Concrete034_Color.jpg
+map_Kd .\textures\cc0textures\Concrete034\Concrete034_Color.jpg
+Ni 1
+illum 2
+
+newmtl SCRUB_0
+Ns 92.156863
+Ka 0.5019608 0.5019608 0.5019608
+Kd 0.5019608 0.5019608 0.5019608
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\Grass-2048.JPG
+map_Kd .\textures\Grass-2048.JPG
+Ni 1
+illum 2
+
+newmtl MAT_6_0
+Ns 92.156863
+Ka 0.29803923 0.20392157 0.19215687
+Kd 0.29803923 0.20392157 0.19215687
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\cc0textures\Concrete034\Concrete034_Color.jpg
+map_Kd .\textures\cc0textures\Concrete034\Concrete034_Color.jpg
+Ni 1
+illum 2
+
+newmtl MAT_6_1
+Ns 92.156863
+Ka 0.5019608 0.5019608 0.5019608
+Kd 0.5019608 0.5019608 0.5019608
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\MarekCompositeWall00001_transparent.png
+map_Kd .\textures\MarekCompositeWall00001_transparent.png
+Ni 1
+illum 2
+
+newmtl MAT_7_0
+Ns 92.156863
+Ka 0.29803923 0.20392157 0.19215687
+Kd 0.29803923 0.20392157 0.19215687
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\cc0textures\Concrete034\Concrete034_Color.jpg
+map_Kd .\textures\cc0textures\Concrete034\Concrete034_Color.jpg
+Ni 1
+illum 2
+
+newmtl BUILDING_DEFAULT_0
+Ns 92.156863
+Ka 0.5019608 0.4509804 0.27450982
+Kd 0.5019608 0.4509804 0.27450982
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\cc0textures\Plaster002\Plaster002_Color.jpg
+map_Kd .\textures\cc0textures\Plaster002\Plaster002_Color.jpg
+Ni 1
+illum 2
+
+newmtl MAT_8_0
+Ns 92.156863
+Ka 0.5019608 0.4509804 0.27450982
+Kd 0.5019608 0.4509804 0.27450982
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\cc0textures\Plaster002\Plaster002_Color.jpg
+map_Kd .\textures\cc0textures\Plaster002\Plaster002_Color.jpg
+Ni 1
+illum 2
+
+newmtl MAT_8_1
+Ns 92.156863
+Ka 0.5019608 0.5019608 0.5019608
+Kd 0.5019608 0.5019608 0.5019608
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\MarekCompositeWall00001_transparent.png
+map_Kd .\textures\MarekCompositeWall00001_transparent.png
+Ni 1
+illum 2
+
+newmtl WOOD_WALL_0
+Ns 92.156863
+Ka 0.5019608 0.5019608 0.5019608
+Kd 0.5019608 0.5019608 0.5019608
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\cc0textures\WoodSiding008\WoodSiding008_Color.jpg
+map_Kd .\textures\cc0textures\WoodSiding008\WoodSiding008_Color.jpg
+Ni 1
+illum 2
+
+newmtl GLASS_WALL_0
+Ns 92.156863
+Ka 0.5019608 0.5019608 0.5019608
+Kd 0.5019608 0.5019608 0.5019608
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\cc0textures\Facade005\Facade005_Color.jpg
+map_Kd .\textures\cc0textures\Facade005\Facade005_Color.jpg
+Ni 1
+illum 2
+
+newmtl MAT_9_0
+Ns 92.156863
+Ka 0.5019608 0.5019608 0.5019608
+Kd 0.5019608 0.5019608 0.5019608
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\cc0textures\WoodSiding008\WoodSiding008_Color.jpg
+map_Kd .\textures\cc0textures\WoodSiding008\WoodSiding008_Color.jpg
+Ni 1
+illum 2
+
+newmtl MAT_9_1
+Ns 92.156863
+Ka 0.5019608 0.5019608 0.5019608
+Kd 0.5019608 0.5019608 0.5019608
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\MarekCompositeWall00001_transparent.png
+map_Kd .\textures\MarekCompositeWall00001_transparent.png
+Ni 1
+illum 2
+
+newmtl MAT_10_0
+Ns 92.156863
+Ka 0.27450982 0.27450982 0.27450982
+Kd 0.27450982 0.27450982 0.27450982
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\cc0textures\Concrete034\Concrete034_Color.jpg
+map_Kd .\textures\cc0textures\Concrete034\Concrete034_Color.jpg
+Ni 1
+illum 2
+
+newmtl MAT_10_1
+Ns 92.156863
+Ka 0.5019608 0.5019608 0.5019608
+Kd 0.5019608 0.5019608 0.5019608
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\MarekCompositeWall00001_transparent.png
+map_Kd .\textures\MarekCompositeWall00001_transparent.png
+Ni 1
+illum 2
+
+newmtl GLASS_ROOF_0
+Ns 92.156863
+Ka 0.5019608 0.5019608 0.5019608
+Kd 0.5019608 0.5019608 0.5019608
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\cc0textures\Facade005\Facade005_Color.jpg
+map_Kd .\textures\cc0textures\Facade005\Facade005_Color.jpg
+Ni 1
+illum 2
+
+newmtl MAT_11_0
+Ns 92.156863
+Ka 0.18431373 0.08627451 0.08627451
+Kd 0.18431373 0.08627451 0.08627451
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\cc0textures\Concrete034\Concrete034_Color.jpg
+map_Kd .\textures\cc0textures\Concrete034\Concrete034_Color.jpg
+Ni 1
+illum 2
+
+newmtl MAT_11_1
+Ns 92.156863
+Ka 0.5019608 0.5019608 0.5019608
+Kd 0.5019608 0.5019608 0.5019608
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\MarekCompositeWall00001_transparent.png
+map_Kd .\textures\MarekCompositeWall00001_transparent.png
+Ni 1
+illum 2
+
+newmtl TERRAIN_DEFAULT_0
+Ns 92.156863
+Ka 0.5019608 0.5019608 0.5019608
+Kd 0.5019608 0.5019608 0.5019608
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+map_Ka .\textures\cc0textures\Ground003\Ground003_Color.jpg
+map_Kd .\textures\cc0textures\Ground003\Ground003_Color.jpg
+Ni 1
+illum 2
+
