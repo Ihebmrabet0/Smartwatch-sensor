@@ -45,12 +45,12 @@ function init() {
 
   // Load the building model
   const mtlLoader = new THREE.MTLLoader();
-  mtlLoader.load("/model.mtl", (materials) => {
+  mtlLoader.load("./model.mtl", (materials) => {
     materials.preload();
     const objLoader = new THREE.OBJLoader();
     objLoader.setMaterials(materials);
     objLoader.load(
-      "/model.obj",
+      "./model.obj",
       (object) => {
         building = object;
         scene.add(building);
@@ -79,12 +79,12 @@ function init() {
   const loader = new THREE.CubeTextureLoader();
 
   const texture = loader.load([
-    "/skybox/Daylight Box_Right.bmp",
-    "/skybox/Daylight Box_Left.bmp",
-    "/skybox/Daylight Box_Top.bmp",
-    "/skybox/Daylight Box_Bottom.bmp",
-    "/skybox/Daylight Box_Front.bmp",
-    "/skybox/Daylight Box_Back.bmp",
+    "./skybox/Daylight Box_Right.bmp",
+    "./skybox/Daylight Box_Left.bmp",
+    "./skybox/Daylight Box_Top.bmp",
+    "./skybox/Daylight Box_Bottom.bmp",
+    "./skybox/Daylight Box_Front.bmp",
+    "./skybox/Daylight Box_Back.bmp",
   ]);
 
   scene.background = texture;
