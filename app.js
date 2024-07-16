@@ -2,10 +2,11 @@ const SERVICE_UUID = "12345678-1234-5678-1234-56789abcdef0";
 const CHARACTERISTIC_UUID = "abcdef01-1234-5678-1234-56789abcdef0";
 
 let scene, camera, renderer, building;
-let outsideCircles = [];
-let insideCircles = [];
+let greenCircles = [];
+let redCircles = [];
 let currentState = "";
 let animationFrame;
+let cameraAngle = 0;
 
 init();
 animate();
@@ -14,23 +15,29 @@ document
   .getElementById("connectButton")
   .addEventListener("click", connectToBluetooth);
 
-function init() {
-  // Add simulation buttons for testing
-  const testButtons = document.createElement("div");
-  testButtons.innerHTML = `
-        <button onclick="simulateOutside()">Simulate Outside</button>
-        <button onclick="simulateInside(1)">Simulate Inside Floor 1</button>
-    `;
-  document.body.appendChild(testButtons);
+function degreetoradian(degree) {
+  return degree * (Math.PI / 180);
+}
 
+function init() {
   // Scene setup
   scene = new THREE.Scene();
+
+  // Camera setup
   camera = new THREE.PerspectiveCamera(
     75,
     window.innerWidth / window.innerHeight,
     0.1,
     1000
   );
+  camera.position.set(-50, 20, -30);
+  camera.rotation.set(
+    degreetoradian(31),
+    degreetoradian(-110),
+    degreetoradian(30)
+  );
+
+  // Renderer setup
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
@@ -62,22 +69,9 @@ function init() {
       }
     );
   });
-  function degreetoradian(degree) {
-    return degree * (Math.PI / 180);
-  }
-
-  camera.position.z = -30;
-  camera.position.y = 20;
-  camera.position.x = -50;
-
-  camera.rotation.y = degreetoradian(-110);
-  camera.rotation.z = degreetoradian(30);
-  camera.rotation.x = degreetoradian(31);
 
   // Add a skybox
-
   const loader = new THREE.CubeTextureLoader();
-
   const texture = loader.load([
     "./skybox/Daylight Box_Right.bmp",
     "./skybox/Daylight Box_Left.bmp",
@@ -86,99 +80,106 @@ function init() {
     "./skybox/Daylight Box_Front.bmp",
     "./skybox/Daylight Box_Back.bmp",
   ]);
-
   scene.background = texture;
+}
+
+function createCircle(color, position) {
+  const circleGeometry = new THREE.CircleGeometry(1, 32);
+  const circleMaterial = new THREE.MeshBasicMaterial({
+    color: color,
+    transparent: true,
+    opacity: 0.5,
+    side: THREE.DoubleSide,
+  });
+
+  const edges = new THREE.EdgesGeometry(circleGeometry);
+  const line = new THREE.LineSegments(edges, circleMaterial);
+  line.scale.set(4, 4, 4);
+  line.material.opacity = 0.5;
+  line.position.set(position.x, position.y, position.z);
+  line.rotation.set(degreetoradian(90), 0, 0);
+
+  if (color === 0x00ff00) {
+    greenCircles.push(line);
+  } else {
+    redCircles.push(line);
+  }
+
+  scene.add(line);
 }
 
 function animate() {
   animationFrame = requestAnimationFrame(animate);
   renderer.render(scene, camera);
 
-  // Update animations
-  //updateAnimations();
-}
-
-function updateAnimations() {
-  // Update outside circles
-
-  outsideCircles.forEach((circle) => {
-    circle.scale.x += 0.01;
-
-    circle.scale.y += 0.01;
-
-    circle.material.opacity -= 0.005;
+  // Animate green circles like sonar pulses
+  greenCircles.forEach((circle, index) => {
+    circle.scale.x += index * 0.02;
+    circle.scale.y += index * 0.02;
+    circle.material.opacity -= 0.004;
 
     if (circle.material.opacity <= 0) {
-      scene.remove(circle);
+      circle.scale.set(2, 2, 2);
+      circle.material.opacity = 0.5;
     }
   });
 
-  outsideCircles = outsideCircles.filter(
-    (circle) => circle.material.opacity > 0
-  );
-
-  // Update inside circles
-
-  insideCircles.forEach((circle) => {
-    circle.scale.x += 0.01;
-
-    circle.scale.y += 0.01;
-
-    circle.material.opacity -= 0.005;
+  // Animate red circles like sonar pulses
+  redCircles.forEach((circle, index) => {
+    circle.scale.x += index * 0.02;
+    circle.scale.y += index * 0.02;
+    circle.material.opacity -= 0.004;
 
     if (circle.material.opacity <= 0) {
-      scene.remove(circle);
+      circle.scale.set(2, 2, 2);
+      circle.material.opacity = 0.5;
     }
   });
 
-  insideCircles = insideCircles.filter((circle) => circle.material.opacity > 0);
+  // Remove expired circles
+  greenCircles = greenCircles.filter((circle) => circle.material.opacity > 0);
+  redCircles = redCircles.filter((circle) => circle.material.opacity > 0);
+
+  // Create new circles at intervals
+  if (currentState.includes("Outside") && greenCircles.length < 5) {
+    createCircle(0x00ff00, { x: -14, y: 0, z: -15 });
+  }
+
+  if (currentState.includes("Inside") && redCircles.length < 10) {
+    let floor = currentState.split(" ")[3];
+    createCircle(0xff0000, { x: -14, y: floor * 5, z: -15 });
+  }
+
+  // Slight camera movement
+  cameraAngle += 0.002;
+  camera.position.x = -50 + 5 * Math.sin(cameraAngle);
+  camera.position.z = -30 + 10 * Math.cos(cameraAngle);
+  camera.lookAt(new THREE.Vector3(0, 0, 0));
 }
 
 function handleStateChange() {
-  currentState = "Outside"; // Default state
+  // Clear existing circles
+  greenCircles.forEach((circle) => scene.remove(circle));
+  redCircles.forEach((circle) => scene.remove(circle));
+  greenCircles = [];
+  redCircles = [];
+
   if (currentState.includes("Outside")) {
-    console.log("Outside");
-    createOutsideAnimation();
+    // Start green circle animation
+    createCircle(0x00ff00, { x: -14, y: 0, z: -15 });
+  } else if (currentState.includes("Inside on Floor 0")) {
+    // Start red circle animation for Floor 0
+    createCircle(0xff0000, { x: -14, y: 1, z: -15 });
   } else if (currentState.includes("Inside on Floor 1")) {
-    createInsideAnimation(1);
+    // Start red circle animation for Floor 1
+    createCircle(0xff0000, { x: -14, y: 6, z: -15 });
   } else if (currentState.includes("Inside on Floor 2")) {
-    createInsideAnimation(2);
+    // Start red circle animation for Floor 2
+    createCircle(0xff0000, { x: -14, y: 10, z: -15 });
+  } else if (currentState.includes("Inside on Floor 3")) {
+    // Start red circle animation for Floor 3
+    createCircle(0xff0000, { x: -14, y: 15, z: -15 });
   }
-}
-
-function createOutsideAnimation() {
-  const circleGeometry = new THREE.CircleGeometry(1, 32);
-  const circleMaterial = new THREE.MeshBasicMaterial({
-    color: 0x0000ff,
-    transparent: false,
-    opacity: 1,
-  });
-  const circle = new THREE.Mesh(circleGeometry, circleMaterial);
-  circle.position.set(-23, 4, -25); // Slightly in front of the building
-  scene.add(circle);
-  outsideCircles.push(circle);
-}
-
-function createInsideAnimation(floor) {
-  const floorHeight = 3; // Assuming each floor is 3 units high
-
-  const circleGeometry = new THREE.CircleGeometry(1, 32);
-
-  const circleMaterial = new THREE.MeshBasicMaterial({
-    color: 0xff0000,
-
-    transparent: true,
-
-    opacity: 0.5,
-  });
-
-  const circle = new THREE.Mesh(circleGeometry, circleMaterial);
-
-  circle.position.set(0, floor * floorHeight, 0.1); // Position at the given floor
-
-  scene.add(circle);
-
-  insideCircles.push(circle);
 }
 
 async function connectToBluetooth() {
@@ -217,6 +218,6 @@ function simulateOutside() {
 
 function simulateInside(floor) {
   currentState = `Inside on Floor ${floor}`;
-
+  console.log(currentState);
   handleStateChange();
 }

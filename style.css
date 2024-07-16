@@ -1,0 +1,22 @@
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  position: absolute;
+}
+
+body {
+  margin: 0;
+}
+
+canvas {
+  display: block;
+}
+
+#data {
+  position: absolute;
+  top: 50px;
+  left: 10px;
+  z-index: 10;
+  color: white;
+}

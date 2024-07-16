@@ -5,35 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nicla Sense ME 3D Visualization</title>
-    <style>
-        body {
-            margin: 0;
-        }
-
-        canvas {
-            display: block;
-        }
-
-        button {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            z-index: 10;
-        }
-
-        #data {
-            position: absolute;
-            top: 50px;
-            left: 10px;
-            z-index: 10;
-            color: white;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <button id="connectButton">Connect</button>
     <div id="data"></div>
+    <div class="buttons">
+        <button onclick="simulateOutside()">Simulate Outside</button>
+        <button onclick="simulateInside(0)">Simulate Inside Floor 0</button>
+        <button onclick="simulateInside(1)">Simulate Inside Floor 1</button>
+        <button onclick="simulateInside(2)">Simulate Inside Floor 2</button>
+        <button onclick="simulateInside(3)">Simulate Inside Floor 3</button>
+
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/OBJLoader.js"></script>
