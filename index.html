@@ -4,20 +4,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nicla Sense ME 3D Visualization</title>
+    <title>Smartwatch Data Visualization</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <button id="connectButton">Connect</button>
-    <div id="data"></div>
-    <div class="buttons">
-        <button onclick="simulateOutside()">Simulate Outside</button>
-        <button onclick="simulateInside(0)">Simulate Inside Floor 0</button>
-        <button onclick="simulateInside(1)">Simulate Inside Floor 1</button>
-        <button onclick="simulateInside(2)">Simulate Inside Floor 2</button>
-        <button onclick="simulateInside(3)">Simulate Inside Floor 3</button>
+    <div class="container">
+        <div class="header">
+            <h1>Smartwatch Data Visualization</h1>
+            <button id="connectButton">Connect</button>
+            <button id="settingsButton">Settings</button>
+        </div>
 
+        <div id="settings" class="settings">
+            <h2>Settings</h2>
+            <label for="co2Limit">CO2 Limit:</label>
+            <input type="number" id="co2Limit" value="600">
+            <label for="co2" id="co2">0</label>
+            <br>
+            <label for="vocLimit">VOC Limit:</label>
+            <input type="number" id="vocLimit" value="0.5">
+            <label for="voc" id="voc">0</label>
+            <br>
+            <label for="baroFloor0">Barometer Value for Floor 0:</label>
+            <input type="number" id="baroFloor0" value="1013.25">
+            <label for="baro" id="baro">0</label>
+
+            <br>
+            <button id="saveSettings">Save</button>
+            <label for="acc" id="acc"> Accuracy: </label>
+
+            <label for="accuracy" id="accuracy">0</label>
+
+        </div>
+
+        <div class="data-fields">
+            <div class="data-field">
+                <h2>CURRENT LOCATION</h2>
+                <h1 id="location">unknown</h1>
+            </div>
+            <div class="data-field">
+                <h2>USER STATE</h2>
+                <h1 id="state">unknown</h1>
+            </div>
+            <div class="data-field">
+                <h2>TEMPERATURE</h2>
+                <h1 id="temp">0</h1>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>

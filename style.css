@@ -1,22 +1,87 @@
-.buttons {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  position: absolute;
-}
-
 body {
   margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #0e0e0e;
+  color: #ffffff;
 }
 
 canvas {
   display: block;
 }
 
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 8px;
+  padding: 16px 24px;
+  border-radius: 12px;
+  width: calc(100% - 16px);
+  height: auto;
+  background: rgba(0, 0, 0, 0.9);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.header h1 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+
+#connectButton {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #1e90ff;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#connectButton:hover {
+  background-color: #0077e6;
+}
+
+.data-fields {
+  display: flex;
+  gap: 24px;
+}
+
+.data-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.data-field h2 {
+  font-size: 14px;
+  margin: 0;
+  color: #1e90ff;
+}
+
+.data-field h1 {
+  font-size: 18px;
+  margin: 4px 0;
+}
+
 #data {
   position: absolute;
-  top: 50px;
-  left: 10px;
+  top: 60px;
+  left: 20px;
   z-index: 10;
   color: white;
+}
+
+.settings {
+  h2 {
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+    color: #1e90ff;
+  }
 }

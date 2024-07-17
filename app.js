@@ -7,6 +7,9 @@ let redCircles = [];
 let currentState = "";
 let animationFrame;
 let cameraAngle = 0;
+let co2Limit = 600;
+let vocLimit = 0.5;
+let baroFloor0 = 1013.25;
 
 init();
 animate();
@@ -14,16 +17,17 @@ animate();
 document
   .getElementById("connectButton")
   .addEventListener("click", connectToBluetooth);
+document
+  .getElementById("settingsButton")
+  .addEventListener("click", toggleSettings);
+document.getElementById("saveSettings").addEventListener("click", saveSettings);
 
 function degreetoradian(degree) {
   return degree * (Math.PI / 180);
 }
 
 function init() {
-  // Scene setup
   scene = new THREE.Scene();
-
-  // Camera setup
   camera = new THREE.PerspectiveCamera(
     75,
     window.innerWidth / window.innerHeight,
@@ -37,20 +41,17 @@ function init() {
     degreetoradian(30)
   );
 
-  // Renderer setup
   renderer = new THREE.WebGLRenderer({ antialias: true });
   renderer.setSize(window.innerWidth, window.innerHeight);
   document.body.appendChild(renderer.domElement);
 
-  // Add basic lighting
   const ambientLight = new THREE.AmbientLight(0x404040);
   scene.add(ambientLight);
 
-  const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 1.5);
   directionalLight.position.set(-3, 2, -5).normalize();
   scene.add(directionalLight);
 
-  // Load the building model
   const mtlLoader = new THREE.MTLLoader();
   mtlLoader.load("./model.mtl", (materials) => {
     materials.preload();
@@ -70,7 +71,6 @@ function init() {
     );
   });
 
-  // Add a skybox
   const loader = new THREE.CubeTextureLoader();
   const texture = loader.load([
     "./skybox/Daylight Box_Right.bmp",
@@ -112,7 +112,6 @@ function animate() {
   animationFrame = requestAnimationFrame(animate);
   renderer.render(scene, camera);
 
-  // Animate green circles like sonar pulses
   greenCircles.forEach((circle, index) => {
     circle.scale.x += index * 0.02;
     circle.scale.y += index * 0.02;
@@ -124,7 +123,6 @@ function animate() {
     }
   });
 
-  // Animate red circles like sonar pulses
   redCircles.forEach((circle, index) => {
     circle.scale.x += index * 0.02;
     circle.scale.y += index * 0.02;
@@ -136,11 +134,9 @@ function animate() {
     }
   });
 
-  // Remove expired circles
   greenCircles = greenCircles.filter((circle) => circle.material.opacity > 0);
   redCircles = redCircles.filter((circle) => circle.material.opacity > 0);
 
-  // Create new circles at intervals
   if (currentState.includes("Outside") && greenCircles.length < 5) {
     createCircle(0x00ff00, { x: -14, y: 0, z: -15 });
   }
@@ -150,35 +146,54 @@ function animate() {
     createCircle(0xff0000, { x: -14, y: floor * 5, z: -15 });
   }
 
-  // Slight camera movement
   cameraAngle += 0.002;
   camera.position.x = -50 + 5 * Math.sin(cameraAngle);
   camera.position.z = -30 + 10 * Math.cos(cameraAngle);
   camera.lookAt(new THREE.Vector3(0, 0, 0));
 }
 
-function handleStateChange() {
-  // Clear existing circles
+function handleStateChange(data) {
+  const temp = data.match(/temp:([0-9.]+)/)[1];
+  const baro = parseFloat(data.match(/baro:([0-9.]+)/)[1]);
+  const co2 = parseFloat(data.match(/co2:([0-9.]+)/)[1]);
+  const voc = parseFloat(data.match(/voc:([0-9.]+)/)[1]);
+  const accuracy = parseInt(data.match(/accuracy:(\d+)/)[1]);
+  const movement = data.match(/movement:([a-zA-Z\s]+);/)[1];
+
+  document.getElementById("temp").innerText = temp;
+  document.getElementById("state").innerText = movement;
+
+  document.getElementById("baro").innerText = baro;
+  document.getElementById("co2").innerText = co2;
+  document.getElementById("voc").innerText = voc;
+  document.getElementById("accuracy").innerText = accuracy;
+
+  if (accuracy === 0) {
+    document.getElementById("location").innerText = "Calibrating";
+    currentState = "Calibrating";
+  } else if (co2 > co2Limit || voc > vocLimit) {
+    document.getElementById("location").innerText = "Inside";
+    currentState = "Inside";
+    const altitude = 44330 * (1.0 - Math.pow(baro / baroFloor0, 0.1903));
+    const floor = Math.round(altitude / 3);
+    document.getElementById("location").innerText += ` on Floor ${floor}`;
+  } else {
+    document.getElementById("location").innerText = "Outside";
+    currentState = "Outside";
+  }
+
   greenCircles.forEach((circle) => scene.remove(circle));
   redCircles.forEach((circle) => scene.remove(circle));
   greenCircles = [];
   redCircles = [];
 
   if (currentState.includes("Outside")) {
-    // Start green circle animation
     createCircle(0x00ff00, { x: -14, y: 0, z: -15 });
-  } else if (currentState.includes("Inside on Floor 0")) {
-    // Start red circle animation for Floor 0
-    createCircle(0xff0000, { x: -14, y: 1, z: -15 });
-  } else if (currentState.includes("Inside on Floor 1")) {
-    // Start red circle animation for Floor 1
-    createCircle(0xff0000, { x: -14, y: 6, z: -15 });
-  } else if (currentState.includes("Inside on Floor 2")) {
-    // Start red circle animation for Floor 2
-    createCircle(0xff0000, { x: -14, y: 10, z: -15 });
-  } else if (currentState.includes("Inside on Floor 3")) {
-    // Start red circle animation for Floor 3
-    createCircle(0xff0000, { x: -14, y: 15, z: -15 });
+  } else if (currentState.includes("Inside")) {
+    const floor = parseInt(currentState.split(" ")[3]);
+    if (!isNaN(floor)) {
+      createCircle(0xff0000, { x: -14, y: floor * 5, z: -15 });
+    }
   }
 }
 
@@ -197,27 +212,37 @@ async function connectToBluetooth() {
 
     characteristic.addEventListener("characteristicvaluechanged", (event) => {
       const value = new TextDecoder().decode(event.target.value);
-      currentState = value;
-      document.getElementById("data").innerText = currentState;
-      handleStateChange();
+      handleStateChange(value);
     });
 
-    document.getElementById("data").innerText = "Connected to NiclaSenseME!";
+    document.getElementById("connectButton").remove();
+    console.log("Connected to NiclaSenseME!");
   } catch (error) {
     console.error("Error:", error);
-    document.getElementById("data").innerText =
-      "Failed to connect to NiclaSenseME!";
   }
+}
+
+function toggleSettings() {
+  const settings = document.getElementById("settings");
+  settings.style.display = settings.style.display === "none" ? "block" : "none";
+}
+
+function saveSettings() {
+  co2Limit = parseFloat(document.getElementById("co2Limit").value);
+  vocLimit = parseFloat(document.getElementById("vocLimit").value);
+  baroFloor0 = parseFloat(document.getElementById("baroFloor0").value);
+  toggleSettings();
 }
 
 // Simulation functions for testing
 function simulateOutside() {
-  currentState = "Outside";
-  handleStateChange();
+  handleStateChange(
+    "temp:25;baro:1010;co2:400;voc:0.1;accuracy:3;movement:not moving;"
+  );
 }
 
 function simulateInside(floor) {
-  currentState = `Inside on Floor ${floor}`;
-  console.log(currentState);
-  handleStateChange();
+  handleStateChange(
+    `temp:25;baro:1013.25;co2:800;voc:1;accuracy:3;movement:not moving;`
+  );
 }
