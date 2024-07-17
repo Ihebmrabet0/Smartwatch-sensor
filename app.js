@@ -113,23 +113,23 @@ function animate() {
   renderer.render(scene, camera);
 
   greenCircles.forEach((circle, index) => {
-    circle.scale.x += index * 0.02;
-    circle.scale.y += index * 0.02;
+    circle.scale.x += index * 0.03;
+    circle.scale.y += index * 0.03;
     circle.material.opacity -= 0.004;
 
     if (circle.material.opacity <= 0) {
-      circle.scale.set(2, 2, 2);
+      circle.scale.set(4, 4, 4);
       circle.material.opacity = 0.5;
     }
   });
 
   redCircles.forEach((circle, index) => {
-    circle.scale.x += index * 0.02;
-    circle.scale.y += index * 0.02;
+    circle.scale.x += index * 0.03;
+    circle.scale.y += index * 0.03;
     circle.material.opacity -= 0.004;
 
     if (circle.material.opacity <= 0) {
-      circle.scale.set(2, 2, 2);
+      circle.scale.set(4, 4, 4);
       circle.material.opacity = 0.5;
     }
   });
@@ -159,6 +159,7 @@ function handleStateChange(data) {
   const voc = parseFloat(data.match(/voc:([0-9.]+)/)[1]);
   const accuracy = parseInt(data.match(/accuracy:(\d+)/)[1]);
   const movement = data.match(/movement:([a-zA-Z\s]+);/)[1];
+  let floor = 0;
 
   document.getElementById("temp").innerText = temp;
   document.getElementById("state").innerText = movement;
@@ -175,7 +176,7 @@ function handleStateChange(data) {
     document.getElementById("location").innerText = "Inside";
     currentState = "Inside";
     const altitude = 44330 * (1.0 - Math.pow(baro / baroFloor0, 0.1903));
-    const floor = Math.round(altitude / 3);
+    floor = Math.round(altitude / 3);
     document.getElementById("location").innerText += ` on Floor ${floor}`;
   } else {
     document.getElementById("location").innerText = "Outside";
@@ -188,10 +189,12 @@ function handleStateChange(data) {
   redCircles = [];
 
   if (currentState.includes("Outside")) {
-    createCircle(0x00ff00, { x: -14, y: 0, z: -15 });
+    createCircle(0x00ff00, { x: -14, y: 1, z: -15 });
   } else if (currentState.includes("Inside")) {
-    const floor = parseInt(currentState.split(" ")[3]);
+    console.log("Floor:", floor);
+    console.log(currentState.split(" "));
     if (!isNaN(floor)) {
+      console.log("Creating red circle");
       createCircle(0xff0000, { x: -14, y: floor * 5, z: -15 });
     }
   }
